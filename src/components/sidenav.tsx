@@ -6,8 +6,7 @@ interface SidenavProps{
 }
 const Sidenav:React.FC<SidenavProps> = ({menus}) => {
     return (
-        <ul>
-        {menus.map((menu,idx) => (
+        <ul className="bg-gray-800 min-h-screen">        {menus.map((menu,idx) => (
             <li key={idx}>{menu.name}</li>
             ))}
         </ul>
