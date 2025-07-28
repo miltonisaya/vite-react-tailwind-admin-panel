@@ -1,35 +1,16 @@
-import './App.css'
-import Header from "./components/header.tsx";
-import Sidenav from "./components/sidenav.tsx";
-import Footer from "./components/footer.tsx";
-
-export interface MenuItem {
-    name:string;
-    icon:string;
-    url:string;
-}
-
-const menus:MenuItem[] = [
-    {
-        name:"Dashboard",
-        icon:"settings",
-        url:"/dashboard"
-    },
-    {
-        name:"Security",
-        icon:"security",
-        url:"security"
-    }
-]
+import "./App.css";
+import Sidebar from "./components/Sidebar/Sidebar.tsx";
+import Dashboard from "./components/Dashboard/Dashboard.tsx";
 
 function App() {
   return (
     <>
-        <Header title="Admin Dashboard" />
-        <Sidenav menus={menus}/>
-        <Footer footerText="All Rights Reserved" />
+      <main className="grid gap-4 p-4 grid-cols-[220px,1fr]">
+        <Sidebar />
+        <Dashboard />
+      </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
