@@ -14,8 +14,8 @@ const AccountToggle: React.FC = () => {
           <span className="text-sm font-bold block"> Tom Is Loading</span>
           <span className="text-xs block text-stone-500">tom@hover.dev</span>
         </div>
-        <FiChevronDown className="absolute right-2 top-1/2 translate-y-[calc(50%+4px)] text-xs" />
-        <FiChevronUp className="absolute right-2 top-1/2 translate-y-[calc(50%-4px)] text-xs" />
+        <FiChevronDown className="absolute right-2 top-1/2 translate-y-[calc(-50%+4px)] text-xs" />
+        <FiChevronUp className="absolute right-2 top-1/2 translate-y-[calc(-50%-4px)] text-xs" />
       </button>
     </div>
   );
