@@ -1,6 +1,7 @@
 import AccountToggle from "./AccountToggle.tsx";
 import Search from "./Search.tsx";
-import RouteSelect from "./RouteSelect.tsx";
+import { RouteSelect } from "./RouteSelect.tsx";
+import { Plan } from "../Plan/Plan.tsx";
 
 const Sidebar = () => {
   return (
@@ -11,6 +12,7 @@ const Sidebar = () => {
         <RouteSelect />
       </div>
       {/*    Plan toggle*/}
+      <Plan />
     </div>
   );
 };
