@@ -118,8 +118,9 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({collapsed, onToggle, currentPage, onPageChange}) => {
+    console.log("On toggle", onToggle)
     const [expandedItems, setExpandedItems] = React.useState<Set<string>>(new Set(["analytics"]));
-    const toggleExpanded = (itemId) => {
+    const toggleExpanded = (itemId: string) => {
         const newExpanded = new Set(expandedItems);
 
         if (newExpanded.has(itemId)) {
@@ -178,54 +179,54 @@ const Sidebar: React.FC<SidebarProps> = ({collapsed, onToggle, currentPage, onPa
                                     <item.icon className="w-5 h-5"/>
                                 </div>
                                 {/*Conditional Rendering*/}
-                                    {!collapsed && (
-                                        <>
+                                {!collapsed && (
+                                    <>
                                         <span className="font-medium ml-2">{item.label}</span>
 
-                                    {
-                                        item.badge && (
-                                        <span className={`px-2 py-1 text-xs bg-red-500 text-white rounded-full`}>
+                                        {
+                                            item.badge && (
+                                                <span className={`px-2 py-1 text-xs bg-red-500 text-white rounded-full`}>
                                             {item.badge}
                                         </span>
-                                )
-                                }
+                                            )
+                                        }
 
-                                {
-                                item.count && (
-                                <span
-                                    className={`px-2 py-1 text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full`}>
+                                        {
+                                            item.count && (
+                                                <span
+                                                    className={`px-2 py-1 text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full`}>
                                             {item.count}
                                         </span>
-                                )}
-                                        </>
+                                            )}
+                                    </>
                                 )}
 
+                                {
+                                    !collapsed && item.submenu && (
+                                        <ChevronDown className={`w-4 h-4 transition-transform`}/>
+                                    )
+                                }
+                            </button>
+                            {/*    Submenus */
+                            }
                             {
-                                !collapsed && item.submenu && (
-                                    <ChevronDown className={`w-4 h-4 transition-transform`}/>
+                                !collapsed && item.submenu && expandedItems.has(item.id) && (
+                                    <div className="ml-8 mt-2 space-y-1">
+                                        {item.submenu.map((submenu) => {
+                                            return (
+                                                <button
+                                                    className="w-full text-left p-2 text-sm text-slate-600 dark:text-slate-400 hover:text-shadow-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all"
+                                                    key={submenu.id}>
+                                                    {submenu.label}
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
                                 )
                             }
-                        </button>
-                {/*    Submenus */
-                }
-                {
-                    !collapsed && item.submenu && expandedItems.has(item.id) && (
-                        <div className="ml-8 mt-2 space-y-1">
-                            {item.submenu.map((submenu) => {
-                                return (
-                                    <button
-                                        className="w-full text-left p-2 text-sm text-slate-600 dark:text-slate-400 hover:text-shadow-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all"
-                                        key={submenu.id}>
-                                        {submenu.label}
-                                    </button>
-                                )
-                            })}
+
                         </div>
                     )
-                }
-
-                </div>
-                )
                 })}
             </nav>
 
